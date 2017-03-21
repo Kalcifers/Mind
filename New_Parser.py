@@ -16,12 +16,16 @@ csvwriter = csv.writer(csv_file)
 
 # ciclo per tradurre il file .json in quello .csv
 # scrivo l'header
-header = ['text', "sentiment"]
+header = ['id', 'text', 'sentiment']
 csvwriter.writerow(header)
+
+idtweet = 0
 
 # vado a cercare i values() corrispondenti a text e sentiment
 for tweet in data_parsed:
     mylist = []
+    idtweet += 1
+    mylist.append(idtweet)
     header_1Lev = tweet.keys()
 
     for keys1lev in header_1Lev:
@@ -36,7 +40,7 @@ for tweet in data_parsed:
                 if "sentiment" in keys2lev:
                     mylist.append(temp["sentiment"])
 
-    if len(mylist) != 2:
+    if len(mylist) != 3:
         mylist.append("N/A")
 
     csvwriter.writerow(mylist)
