@@ -1,4 +1,5 @@
 import re
+from nltk.corpus import stopwords
 
 def clean(line):
     emoji_pattern = re.compile("["
@@ -20,3 +21,14 @@ def clean(line):
     k = re.sub("^\s+", "", k)
 
     return k
+
+stoplist = stopwords.words('italian')
+
+
+def remove_stopW(line):
+    line_splitted = line.split()
+
+    line_out = [x for x in line_splitted if x not in stoplist]
+
+    line_clean = " ".join(line_out)
+    return line_clean
