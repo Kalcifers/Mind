@@ -13,7 +13,8 @@ with open('File_Parsered.csv', 'rt', encoding='utf8') as f, \
     for row in csv_f:
 
         idtweet = row[0]
-        string = row[1].replace('é', 'e').replace('ò', 'o').replace('è', 'e').replace('à', 'a').replace('ù', 'u').lower()
+        string = row[1].lower()
         string_clean = Cleaner.clean(string)
         string_noTW = Cleaner.remove_stopW(string_clean)
-        d.write('Tweet' + idtweet + ' ' + string_noTW + '\n')
+        string_fin = string_noTW.replace('é', 'e').replace('ò', 'o').replace('è', 'e').replace('à', 'a').replace('ù', 'u')
+        d.write('Tweet' + idtweet + ' ' + string_fin + '\n')
