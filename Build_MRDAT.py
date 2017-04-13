@@ -17,4 +17,6 @@ with open('File_Parsered.csv', 'rt', encoding='utf8') as f, \
         string_clean = Cleaner.clean(string)
         string_noTW = Cleaner.remove_stopW(string_clean)
         string_fin = string_noTW.replace('é', 'e').replace('ò', 'o').replace('è', 'e').replace('à', 'a').replace('ù', 'u')
-        d.write('Tweet' + idtweet + ' ' + string_fin + '\n')
+
+        if string_fin != "":
+            d.write('Tweet' + idtweet + ' ' + string_fin + '\n')
