@@ -8,7 +8,7 @@ csv.field_size_limit(sys.maxsize)  # risolve il problema di overflow
 with open('File_Parsered.csv', 'rt', encoding='utf8') as f,\
         open('CleanTweet.csv', 'wt', encoding='utf8') as d:
     csv_f = csv.reader(f)
-    csvwriter = csv.writer(d)
+    csvwriter = csv.writer(d, quotechar='"', quoting=csv.QUOTE_NONNUMERIC, delimiter=',', lineterminator='\r\n')
     next(csv_f)
 
     for row in csv_f:
@@ -20,10 +20,12 @@ with open('File_Parsered.csv', 'rt', encoding='utf8') as f,\
         k = re.sub("[\n]+", " ", k)  # remove newline
         k = re.sub("[\s]*https?/?/?\S+", "", k)  # remove links
         k = re.sub("[\s]*-&\S+", "", k)  # remove indentation
+        k = re.sub("[\”\"\“]", "", k)
         k = re.sub("[\s]{2,}", " ", k)  # remove multiple spaces
         k = re.sub("^\s+", "", k)
 
         mylist.append(k)
+        mylist.append(row[2])
 
         if k != "":
             csvwriter.writerow(mylist)
