@@ -9,7 +9,7 @@ def clean(line):
                                u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                                "]+", flags=re.UNICODE)
     k = re.sub("[\n\t\n\s]*<[^>]*>[\n\t\s]*", " ", line)  # remove html tags
-    k = re.sub("[^a-z0-9A-Z\s'éèòàù]", "", k)  # remove special characters
+    k = re.sub("[^a-zA-Z\s'éèòàù]", "", k)  # remove special characters. Ho tolto ciò che lasciava i numeri prima era così [^a-z0-9A-Z\s'èéòàù]
     k = re.sub("[\n]+", " ", k) # remove newline
     #k = emoji_pattern.sub(r'', k) # remove emojis (not necesssary)
     k = re.sub("[\s]*https?/?/?\S+", "", k) #remove links

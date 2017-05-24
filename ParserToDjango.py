@@ -12,11 +12,9 @@ with open('/Users/robertopenna/Desktop/Archivio/UNIMIB/Stage/JST-master/Results/
             if word == 'Label' or word == 'Topic':
                 break
             else:
-                print(word)
                 diz['weight'] = line.split()[1]
                 diz['text'] = line.split()[0]
                 cont.append(diz)
-    print(cont)
 
     listofdict = ','.join(str(x) for x in cont)
     d.write('[' + listofdict + ']')
